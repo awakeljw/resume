@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="刘佳伟 - 高级软件工程师，专注于数据库内核与 OLAP 计算引擎开发">
+    <title>刘佳伟 - 高级软件工程师 | 个人简历</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --accent: #0ea5e9;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --header-gradient: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
+            --card-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            --hover-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.7;
+            color: #1e293b;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .container:hover {
+            box-shadow: var(--hover-shadow);
+        }
+        
+        /* Header */
+        .header {
+            background: var(--header-gradient);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .header .title {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            font-size: 0.95em;
+        }
+        
+        .contact-info a, .contact-info span {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .contact-info a:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 45px 50px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-size: 1.6em;
+            color: #1e293b;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 4px solid var(--primary);
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        .section-title span {
+            margin-right: 10px;
+        }
+        
+        /* Summary */
+        .summary {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 30px 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .summary p {
+            color: #334155;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+        
+        /* Work Experience */
+        .work-item {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .work-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .work-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .company-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .position {
+            color: var(--primary);
+            font-weight: 600;
+            margin: 8px 0;
+            font-size: 1.05em;
+        }
+        
+        .date {
+            color: #64748b;
+            font-size: 0.9em;
+            background: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .work-item ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 20px;
+        }
+        
+        .work-item li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            color: #475569;
+            line-height: 1.7;
+        }
+        
+        .work-item li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .work-item li strong {
+            color: #1e293b;
+        }
+        
+        /* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .education-item {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 25px;
+            border-radius: 16px;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .education-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .school-name {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        
+        .degree {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .date {
+            color: #64748b;
+            font-size: 0.9em;
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .project-item {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--header-gradient);
+        }
+        
+        .project-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+        }
+        
+        .project-name {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-size: 1.15em;
+        }
+        
+        .project-desc {
+            color: #64748b;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        .project-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .project-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .skill-item {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px rgba(37, 99, 235, 0.1);
+        }
+        
+        .skill-item h4 {
+            color: #1e293b;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-item p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            color: var(--primary-dark);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        /* Awards */
+        .awards-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .award-item {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #92400e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #f8fafc;
+            padding: 30px 50px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9em;
+        }
+        
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .action-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+        }
+        
+        .action-btn.secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        /* QR Code Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+        
+        .modal-content h3 {
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+        
+        .qr-placeholder {
+            width: 250px;
+            height: 250px;
+            background: #f1f5f9;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            color: #94a3b8;
+        }
+        
+        .modal-close {
+            margin-top: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .header {
+                padding: 40px 25px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .section {
+                padding: 35px 25px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .company-header {
+                flex-direction: column;
+            }
+            
+            .action-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .action-btn {
+                padding: 12px 20px;
+                font-size: 0.85em;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+            }
+            
+            .action-buttons, .modal {
+                display: none !important;
+            }
+            
+            .work-item:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>刘佳伟</h1>
+                <div class="title">高级软件工程师 | 数据库内核专家</div>
+                <div class="contact-info">
+                    <a href="tel:13261209080">📱 132-6120-9080</a>
+                    <a href="mailto:993007281@qq.com">📧 993007281@qq.com</a>
+                    <span>📍 北京</span>
+                    <a href="https://github.com/awakeljw" target="_blank">🔗 github.com/awakeljw</a>
+                </div>
+            </div>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title"><span>👤</span>个人简介</h2>
+            <div class="summary">
+                <p>
+                    <strong>8 年 + 数据库内核开发经验</strong>，专注于 OLAP 计算引擎、分布式存储系统性能优化。
+                    现任腾讯云架构平台高级软件工程师，主导 ClickHouse 向量化计算引擎研发。
+                    深度参与 OpenGauss、Apache Doris、ClickHouse 等多个开源项目，
+                    在 HashJoin 优化、MPP 并行执行、RuntimeFilter 等核心技术领域有丰富实战经验。
+                    擅长 C/C++ 高性能编程，追求极致的系统性能与代码质量。
+                </p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><span>💼</span>工作经历</h2>
+            
+            <div class="work-item">
+                <div class="company-header">
+                    <div>
+                        <div class="company-name">腾讯科技（北京）有限公司</div>
+                        <div class="position">高级软件工程师 | TEG 云架构平台</div>
+                    </div>
+                    <div class="date">2021.09 - 至今</div>
+                </div>
+                <ul>
+                    <li><strong>MPP 向量化计算引擎：</strong>基于 ClickHouse 打造分布式计算引擎，实现物理执行计划分发、计划下推、算子内及算子间并行执行，通过 SIMD、CRTP 等技术深度优化性能</li>
+                    <li><strong>HashJoin 性能优化：</strong>通过减少虚函数调用、编译期分支优化、CacheLine 对齐等技术，实现单个算子性能提升<strong>100%</strong></li>
+                    <li><strong>RuntimeFilter 特性：</strong>设计实现 RuntimeFilter 机制，使 HashJoin 性能提升<strong>数倍</strong>，显著降低大数据量场景下的查询延迟</li>
+                    <li><strong>COS 生命周期管理：</strong>基于 Kafka + Spark 搭建日志分析系统，实现对象存储的自动沉降、删除等生命周期管理</li>
+                    <li><strong>COS Select 增强：</strong>实现单个对象内容的数据分析功能，支持 SQL 直接查询对象存储中的数据</li>
+                    <li><strong>分布式文件系统：</strong>针对超大 checkpoint 文件进行读写性能优化，提升系统可靠性与恢复速度</li>
+                </ul>
+            </div>
+            
+            <div class="work-item">
+                <div class="company-header">
+                    <div>
+                        <div class="company-name">百度时代网络技术有限公司</div>
+                        <div class="position">高级软件工程师 | 基础架构部</div>
+                    </div>
+                    <div class="date">2020.07 - 2021.08</div>
+                </div>
+                <ul>
+                    <li><strong>RocksDB 引擎优化：</strong>解决 Bulkload 场景内存 OOM 问题，开发 Kill Statement Timeout 等关键特性</li>
+                    <li><strong>MySQL 并行查询：</strong>基于 Scatter-Gather 模型重构 MySQL 单线程执行方式，实现 Scan、Gather、Aggregate 等算子并行，查询性能提升<strong>数倍</strong></li>
+                </ul>
+            </div>
+            
+            <div class="work-item">
+                <div class="company-header">
+                    <div>
+                        <div class="company-name">北京华为数字技术有限公司</div>
+                        <div class="position">软件工程师 | 高斯实验室（GaussDB）</div>
+                    </div>
+                    <div class="date">2018.03 - 2020.07</div>
+                </div>
+                <ul>
+                    <li><strong>无锁并行框架：</strong>设计开发 explain performance 并行框架，执行计划统计信息按线程隔离，解决线程资源抢占问题</li>
+                    <li><strong>HashJoin 内存优化：</strong>实现 Bucket-chaining 临时下盘功能，大幅优化 HashJoin 算子内存使用</li>
+                    <li><strong>数据库兼容性：</strong>完成 MySQL & Oracle 语法词法、函数等兼容性适配，降低用户迁移成本</li>
+                    <li><strong>PGXC 计划增强：</strong>实现类 Spectrum 的 HDFS 外表查询加速，支持 Aggregate 等算子下推执行</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><span>🎓</span>教育背景</h2>
+            <div class="education-grid">
+                <div class="education-item">
+                    <div class="school-name">清华大学</div>
+                    <div class="degree">硕士</div>
+                    <div class="date">2015.08 - 2018.01</div>
+                </div>
+                <div class="education-item">
+                    <div class="school-name">北京理工大学</div>
+                    <div class="degree">本科</div>
+                    <div class="date">2011.08 - 2015.07</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><span>🚀</span>开源贡献</h2>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <div class="project-name">OpenGauss</div>
+                    <div class="project-desc">计算引擎特性开发，HashJoin 优化，MySQL/Oracle 兼容性适配</div>
+                    <a href="https://opengauss.org" target="_blank" class="project-link">访问项目 →</a>
+                </div>
+                <div class="project-item">
+                    <div class="project-name">Apache Doris</div>
+                    <div class="project-desc">HashJoin 算子性能优化，向量化计算引擎开发</div>
+                    <a href="https://doris.apache.org" target="_blank" class="project-link">访问项目 →</a>
+                </div>
+                <div class="project-item">
+                    <div class="project-name">ClickHouse</div>
+                    <div class="project-desc">HashJoin 性能优化，Function 实现，社区 Issue 修复</div>
+                    <a href="https://clickhouse.com" target="_blank" class="project-link">访问项目 →</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><span>🛠️</span>技术栈</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h4>💻 编程语言</h4>
+                    <p>精通 C/C++ 高性能编程，熟悉多线程、内存管理、性能优化</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C/C++</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Shell</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h4>🗄️ 数据库内核</h4>
+                    <p>深入理解 OLAP 引擎架构，有完整的计算引擎研发经验</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ClickHouse</span>
+                        <span class="skill-tag">Apache Doris</span>
+                        <span class="skill-tag">OpenGauss</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">RocksDB</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h4>📊 大数据框架</h4>
+                    <p>熟悉主流大数据系统架构设计与实现原理</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Presto</span>
+                        <span class="skill-tag">SparkSQL</span>
+                        <span class="skill-tag">Snowflake</span>
+                        <span class="skill-tag">GreenPlum</span>
+                        <span class="skill-tag">F1 Query</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h4>⚡ 核心技术</h4>
+                    <p>专注于系统性能优化与分布式计算</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MPP 架构</span>
+                        <span class="skill-tag">向量化执行</span>
+                        <span class="skill-tag">SIMD 优化</span>
+                        <span class="skill-tag">分布式系统</span>
+                        <span class="skill-tag">性能调优</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><span>🏆</span>荣誉奖项</h2>
+            <div class="awards-list">
+                <div class="award-item">🥈 全国大学生数学建模竞赛 二等奖</div>
+                <div class="award-item">🥇 美国大学生数学建模竞赛 一等奖</div>
+                <div class="award-item">🏎️ 方程式赛车竞赛 奖项</div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <p>最后更新：2025 年 2 月 | 
+            <a href="mailto:993007281@qq.com">联系我</a> | 
+            <a href="https://github.com/awakeljw" target="_blank">GitHub</a></p>
+        </footer>
+    </div>
+    
+    <div class="action-buttons">
+        <button class="action-btn" onclick="window.print()">🖨️ 打印 PDF</button>
+        <button class="action-btn secondary" onclick="shareResume()">📤 分享简历</button>
+    </div>
+    
+    <div class="modal" id="shareModal">
+        <div class="modal-content">
+            <h3>📱 扫码查看简历</h3>
+            <div class="qr-placeholder" id="qrPlaceholder">
+                二维码生成中...
+            </div>
+            <p style="color: #64748b; font-size: 0.9em;">使用手机扫描二维码即可在移动端查看</p>
+            <button class="modal-close" onclick="closeModal()">关闭</button>
+        </div>
+    </div>
+    
+    <script>
+        function shareResume() {
+            const url = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: '刘佳伟 - 个人简历',
+                    text: '高级软件工程师 | 数据库内核专家',
+                    url: url
+                }).catch(console.error);
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('链接已复制到剪贴板！');
+                });
+            }
+        }
+        
+        function closeModal() {
+            document.getElementById('shareModal').style.display = 'none';
+        }
+        
+        // Generate QR code using a simple API
+        function generateQR() {
+            const url = window.location.href;
+            const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(url)}`;
+            document.getElementById('qrPlaceholder').innerHTML = `<img src="${qrApi}" alt="QR Code" style="width:250px;height:250px;">`;
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('shareModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
